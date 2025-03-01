@@ -44,17 +44,5 @@ services:
     networks:
       - presto-network
 
-
-  # what-to-do:
-  #   build: 
-  #     context: .
-  #     dockerfile: docker-configuration/what-to-do/Dockerfile
-  #   restart: on-failure
-  #   volumes: 
-  #     - ./what-to-do:/app/what-to-do
-  #     - /app/what-to-do/node_modules
-  #   ports:
-  #     - "8091:8081"
-
 volumes:
   postgresql-data:
