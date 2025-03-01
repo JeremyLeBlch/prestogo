@@ -1,0 +1,41 @@
+type Restaurant @cacheControl(maxAge: 240){
+    id: Int!
+    name: String!
+    description: String!
+    terrace: Boolean!
+    address: String!
+    city: City! @cacheControl(maxAge: 480)
+    manager: Manager! @cacheControl(maxAge: 480)
+    cuisines: [Cuisine!] @cacheControl(maxAge: 480)
+}
+
+input RestaurantWhereInput {
+    id: Int
+    name: String
+    description: String
+    terrace: Boolean
+    address: String
+    cityId: Int
+    managerId: Int
+}
+
+input NewRestaurant {
+    name: String!
+    description: String!
+    terrace: Boolean!
+    address: String!
+    managerId: Int!
+    cityId: Int!
+    cuisinesIds: [Int!]
+}
+
+input UpdatedRestaurant {
+    id: Int!
+    name: String
+    description: String
+    terrace: Boolean
+    address: String
+    managerId: Int
+    cityId: Int
+    cuisinesIds: [Int!]
+}

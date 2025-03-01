@@ -1,0 +1,32 @@
+type Manager {
+    id: Int!
+    email: String!
+    phone: String!
+    firstname: String!
+    lastname: String!
+    fullname: String
+    restaurants: [Restaurant!]
+}
+
+input ManagerWhereInput {
+    id: Int
+    email: String
+    phone: String
+    firstname: String
+    lastname: String
+}
+
+input NewManager {
+    email: String!
+    phone: String!
+    firstname: String!
+    lastname: String!
+}
+
+input UpdatedManager {
+    id: Int!
+    email: String
+    phone: String
+    firstname: String
+    lastname: String
+}

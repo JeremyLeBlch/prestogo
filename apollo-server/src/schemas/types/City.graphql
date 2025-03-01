@@ -1,0 +1,36 @@
+type Coordinates {
+    latitude: Float!
+    longitude: Float!
+}
+
+type City {
+    id: Int!
+    name: String!
+    postcode: String!
+    coordinates: Coordinates!
+    weather: Weather!
+    restaurants: [Restaurant!]
+}
+
+input CityWhereInput {
+    id: Int
+    name: String
+    postcode: String
+    latitude: Float
+    longitude: Float
+}
+
+input NewCity {
+    name: String!
+    postcode: String!
+    latitude: Float!
+    longitude: Float!
+}
+
+input UpdatedCity {
+    id: Int!
+    name: String
+    postcode: String
+    latitude: Float
+    longitude: Float
+}

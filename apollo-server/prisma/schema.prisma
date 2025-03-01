@@ -1,0 +1,52 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+model City {
+    id        Int    @id @default(autoincrement())
+    name      String
+    postcode  String @unique()
+    latitude  Float
+    longitude Float
+
+    restaurants Restaurant[]
+}
+
+model Cuisine {
+    id    Int    @id @default(autoincrement())
+    label String @unique()
+
+    restaurants Restaurant[]
+}
+
+model Manager {
+    id        Int    @id @default(autoincrement())
+    email     String @unique()
+    phone     String @unique()
+    firstname String
+    lastname  String
+
+    restaurants Restaurant[]
+}
+
+model Restaurant {
+    id    Int    @id @default(autoincrement())   
+    name String
+    description String
+    address String
+    terrace Boolean @default(false)
+
+    cityId Int
+    city City @relation(fields: [cityId], references: [id])
+
+    managerId Int
+    manager Manager @relation(fields: [managerId], references: [id])
+
+    cuisines Cuisine[]
+}

@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+
+# Environments variables
+.env
+
+# Node.js (with TypeScript)
+node_modules/
+dist/

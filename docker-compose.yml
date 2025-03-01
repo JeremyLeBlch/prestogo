@@ -1,0 +1,60 @@
+version: "3.8"
+
+networks:
+  presto-network:
+    driver: bridge
+
+services:
+  apollo-server:
+    build: 
+      context: .
+      dockerfile: docker-configuration/apollo-server/Dockerfile
+    restart: on-failure
+    volumes: 
+      - ./apollo-server:/app/apollo-server
+      - /app/apollo-server/node_modules
+    ports:
+      - "4005:4005"
+      - "5555:5555" # Port used by Prisma Studio
+    networks:
+      - presto-network
+
+  postgresql:
+    image: postgis/postgis
+    restart: on-failure
+    env_file:
+      - ./.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    networks:
+      - presto-network
+
+  react-native-client:
+    build: 
+      context: .
+      dockerfile: docker-configuration/react-native-client/Dockerfile
+    restart: on-failure
+    volumes: 
+      - ./react-native-client:/app/react-native-client
+      - /app/react-native-client/node_modules
+    ports:
+      - "8081:8081"
+    networks:
+      - presto-network
+
+
+  # what-to-do:
+  #   build: 
+  #     context: .
+  #     dockerfile: docker-configuration/what-to-do/Dockerfile
+  #   restart: on-failure
+  #   volumes: 
+  #     - ./what-to-do:/app/what-to-do
+  #     - /app/what-to-do/node_modules
+  #   ports:
+  #     - "8091:8081"
+
+volumes:
+  postgresql-data:

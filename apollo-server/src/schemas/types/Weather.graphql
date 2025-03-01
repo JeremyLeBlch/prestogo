@@ -1,0 +1,11 @@
+scalar Date
+
+type Weather {
+    forecast: [Prediction]!
+}
+
+type Prediction {
+    date: Date!
+    temperature: Float!
+    condition: String!
+}

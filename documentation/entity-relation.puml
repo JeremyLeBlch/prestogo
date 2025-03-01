@@ -1,0 +1,41 @@
+@startuml
+
+entity Manager {
+   * id
+   ---
+   * email
+   * phone
+   * firstname
+   * lastname
+}
+
+entity Restaurant {
+   * id
+   ---
+   * name
+   * description
+   * terrace
+   * address
+}
+
+entity Cuisine {
+   * id
+   ---
+   * label
+}
+
+entity City {
+   * id
+   ---
+   * name
+   * postcode
+   * coordinates
+}
+
+Restaurant }o--|| City
+Restaurant }o--o{ Cuisine
+Manager ||--o{ Restaurant
+
+
+
+@enduml

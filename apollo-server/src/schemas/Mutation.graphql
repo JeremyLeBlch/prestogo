@@ -1,0 +1,13 @@
+type Mutation {
+    createRestaurant(data: NewRestaurant!): Restaurant
+    updateRestaurant(data: UpdatedRestaurant!): Restaurant
+    deleteRestaurant(id: Int!): Restaurant
+    createCity(data: NewCity!): City
+    updateCity(data: UpdatedCity!): City
+    deleteCity(id: Int, postcode: String): City
+    createManager(data: NewManager!): Manager
+    updateManager(data: UpdatedManager!): Manager
+    deleteManager(id: Int): Manager
+    createCuisine(data: NewCuisine!): Cuisine
+    deleteCuisine(id: Int, label: String): Cuisine
+}
